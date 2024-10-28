@@ -1,5 +1,5 @@
 # adobe-id-to-filename
-This Python script aims at parsing an Adobe Stock Contributor main page to produce a value key mapping between the Adobe File ID, and the original filename of the picture originaly uploaded.
+This Python script aims at parsing an Adobe Stock Contributor main page to produce a value key mapping between the Adobe File ID, the original filename, and the picture title of the picture originaly uploaded.
 
 ### Prerequisites
 - Python 3.x
@@ -26,12 +26,12 @@ For convenience, it's recommanded to re-direct the output into a csv file:
 python script.py *.html > adobe-mapping.csv
 ```
 
-This will parse the html file and output the Filename to Adobe ID in csv format, for instance:
+This will parse the html file and output the Filename to Adobe ID and picture title in csv format, for instance:
 
 ```bash
-IMG_20200812_172654.jpg,486633060
-IMG_20200812_172652.jpg,486633052
-IMG_20200812_172651.jpg,486633043
+IMG_20200812_172654.jpg,486633060, Title 1
+IMG_20200812_172652.jpg,486633052, Title 2
+IMG_20200812_172651.jpg,486633043, Title 3
 ```
 
-You can use this file in Excel of Google Sheets to map your own records, and for tracking purposes.
+You can use this file in Excel or Google Sheets to map your own records, and for tracking purposes.
