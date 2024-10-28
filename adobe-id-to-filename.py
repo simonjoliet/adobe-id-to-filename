@@ -2,20 +2,21 @@ import re
 import sys
 import glob
 import os
+from urllib.parse import unquote
 
 def extract_info_from_file(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
         content = file.read()
 
     # Define the regex patterns for the two tokens
-    pattern = r'%22%2C%22original_name%22%3A%22(.*?)%22%2C%22.*?F220_F_(.*?)_'
+    pattern = r'%22%2C%22original_name%22%3A%22(.*?)%22%2C%22.*?F220_F_(.*?)_.*?title%22%3A%22(.*?)%22%2C%22'
 
     # Find all matches for the pattern
     matches = re.findall(pattern, content)
 
-    # Print the results as "<value 1>,<value 2>"
+    # Print the results as "<Filename>,<Adobe ID>,<Picture Title>"
     for match in matches:
-        print(f"{match[0]},{match[1]}")
+        print(f"{match[0]},{match[1]},\"{unquote(match[2])}\"")
 
 def show_usage():
     print("Usage:")
@@ -48,7 +49,6 @@ def main():
     # Process each file
     for file_path in file_paths:
         if os.path.isfile(file_path):
-            print(f"Processing file: {file_path}")
             extract_info_from_file(file_path)
         else:
             print(f"Error: '{file_path}' is not a valid file.")
